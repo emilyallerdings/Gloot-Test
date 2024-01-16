@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwvq4gpa63ti5"]
+
+[ext_resource type="Script" path="res://addons/gloot/core/inventory_grid.gd" id="1_43a6o"]
+[ext_resource type="Script" path="res://control.gd" id="1_blvvw"]
+[ext_resource type="Resource" uid="uid://brwvmamo8gfi5" path="res://new_resource.tres" id="2_wqopg"]
+[ext_resource type="Script" path="res://addons/gloot/core/inventory_item.gd" id="3_suptw"]
+[ext_resource type="Script" path="res://addons/gloot/ui/ctrl_inventory_grid_ex.gd" id="4_kfrow"]
+[ext_resource type="StyleBox" uid="uid://bv5gp2mkuou1s" path="res://inventory_instance.tres" id="5_1glhd"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blvvw")
+
+[node name="InventoryGrid" type="Node" parent="."]
+script = ExtResource("1_43a6o")
+item_protoset = ExtResource("2_wqopg")
+
+[node name="_Node_20743" type="Node" parent="InventoryGrid"]
+script = ExtResource("3_suptw")
+protoset = ExtResource("2_wqopg")
+prototype_id = "item"
+
+[node name="InventoryGrid2" type="Node" parent="."]
+script = ExtResource("1_43a6o")
+size = Vector2i(5, 5)
+item_protoset = ExtResource("2_wqopg")
+
+[node name="_Node_20743" type="Node" parent="InventoryGrid2"]
+script = ExtResource("3_suptw")
+protoset = ExtResource("2_wqopg")
+prototype_id = "item"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 304.0
+offset_right = 314.0
+offset_bottom = 353.0
+text = "Inv2
+"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 178.0
+offset_right = 312.0
+offset_bottom = 227.0
+text = "Inv1"
+
+[node name="CtrlInventoryGridEx" type="Control" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(160, 160)
+anchors_preset = 0
+offset_left = 817.0
+offset_top = 188.0
+offset_right = 977.0
+offset_bottom = 348.0
+script = ExtResource("4_kfrow")
+field_style = ExtResource("5_1glhd")
+inventory_path = NodePath("../InventoryGrid2")
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
